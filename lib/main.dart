@@ -1,4 +1,4 @@
-import 'package:cinemaze/screens/home_screen.dart';
+import 'package:cinemaze/routers.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
-      home: HomeScreen(),
+      initialRoute: 'landing',
+      onGenerateRoute: Routers.generateRoute,
     );
   }
 }

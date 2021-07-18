@@ -1,7 +1,6 @@
-  // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cinemaze/utils/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutterfire_samples/screens/user_info_screen.dart';
-// import 'package:flutterfire_samples/utils/authentication.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   @override
@@ -29,26 +28,26 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                 ),
               ),
               onPressed: () async {
-                // setState(() {
-                //   _isSigningIn = true;
-                // });
-                //
-                // User? user =
-                //     await Authentication.signInWithGoogle(context: context);
-                //
-                // setState(() {
-                //   _isSigningIn = false;
-                // });
-                //
-                // if (user != null) {
-                //   Navigator.of(context).pushReplacement(
-                //     MaterialPageRoute(
-                //       builder: (context) => UserInfoScreen(
-                //         user: user,
-                //       ),
-                //     ),
-                //   );
-                // }
+                setState(() {
+                  _isSigningIn = true;
+                });
+
+                User user =
+                    await Authentication.signInWithGoogle(context: context);
+
+                setState(() {
+                  _isSigningIn = false;
+                });
+
+                /*if (user != null) {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => UserInfoScreen(
+                        user: user,
+                      ),
+                    ),
+                  );
+                }*/
               },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -57,7 +56,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("images/google.png"),
+                      image: AssetImage("assets/images/google.png"),
                       height: 35.0,
                     ),
                     Padding(
