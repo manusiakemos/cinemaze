@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemaze/variables/variables.dart';
 
@@ -9,7 +10,9 @@ class AppBarWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            // Navigator.push(context, CupertinoPageRoute(builder: (context) => SignIn()));
+          },
           icon: Icon(Icons.account_circle_outlined),
           color: textPrimary,
           iconSize: fontSizeExtraLarge,

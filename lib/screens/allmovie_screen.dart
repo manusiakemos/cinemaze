@@ -1,9 +1,11 @@
 import 'package:cinemaze/models/discover_model.dart';
+import 'package:cinemaze/screens/movie_detail.dart';
 import 'package:cinemaze/service/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:cinemaze/widgets/appbar_widget.dart';
 import 'package:cinemaze/widgets/load_more_movie.dart';
 import 'package:cinemaze/widgets/now_playing.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shape_of_view/shape_of_view.dart';
 
@@ -144,12 +146,18 @@ class FlutterItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: FadeInImage.assetNetwork(
-          placeholder: "assets/loading.gif",
-          image: data.poster(),
-        )
+    return GestureDetector(
+      onTap: (){
+        
+        Navigator.push(context, CupertinoPageRoute(builder: (context)=> MovieDetail(discoverModel: data,) ));
+      },
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: FadeInImage.assetNetwork(
+            placeholder: "assets/loading.gif",
+            image: data.poster(),
+          )
+      ),
     );
   }
 }
