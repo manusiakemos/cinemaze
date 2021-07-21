@@ -1,5 +1,4 @@
 import 'package:cinemaze/providers/user_provider.dart';
-import 'package:cinemaze/utils/authentication.dart';
 import 'package:cinemaze/utils/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
