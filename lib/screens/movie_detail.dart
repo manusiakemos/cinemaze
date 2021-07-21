@@ -47,8 +47,9 @@ class _MovieDetailState extends State<MovieDetail> {
                 child: Column(
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.43,
+                      height: MediaQuery.of(context).size.height * 0.4,
                       child: Stack(
+                        clipBehavior: Clip.none,
                         children: [
                           ShapeOfView(
                               elevation: 0,
@@ -61,7 +62,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                   fit: BoxFit.fill,
                                   width: double.infinity)),
                           Container(
-                            height: MediaQuery.of(context).size.height * 0.43,
+                            height: MediaQuery.of(context).size.height * 0.3,
                             decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                     begin: Alignment.topCenter,
@@ -88,7 +89,9 @@ class _MovieDetailState extends State<MovieDetail> {
                                             Navigator.pop(context);
                                           },
                                         ),
-                                        FavoriteButton(movieDetailModel: movieDetailModel,)
+                                        FavoriteButton(
+                                          movieDetailModel: movieDetailModel,
+                                        )
                                       ],
                                     ),
                                   ],
@@ -124,6 +127,9 @@ class _MovieDetailState extends State<MovieDetail> {
                                         padding: const EdgeInsets.only(left: 4),
                                         child: Text(
                                           movieDetailModel.judul(),
+                                          maxLines: 1,
+                                          softWrap: false,
+                                          overflow: TextOverflow.fade,
                                           style: headingPrimary,
                                         ),
                                       ),
@@ -254,17 +260,10 @@ class _MovieDetailState extends State<MovieDetail> {
                                                           const EdgeInsets.only(
                                                               right: 4),
                                                       child: ClipRRect(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10),
-                                                        child: FadeInImage
-                                                            .assetNetwork(
-                                                                placeholder:
-                                                                    "assets/loading.gif",
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                image: getImage(
-                                                                    e.filePath)),
+                                                        borderRadius: BorderRadius.circular(10),
+                                                        child: Image.network(
+                                                            getImage(e.filePath),
+                                                            fit: BoxFit.cover),
                                                       ),
                                                     );
                                                   }).toList()),
@@ -364,7 +363,7 @@ class MovieDetailGenre extends StatelessWidget {
                 horizontal: paddingMedium, vertical: paddingSmall),
             margin: EdgeInsets.only(right: paddingLarge),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(50),
                 gradient: LinearGradient(
                     begin: Alignment.topRight,
                     end: Alignment.bottomLeft,
@@ -372,7 +371,7 @@ class MovieDetailGenre extends StatelessWidget {
             child: Center(
               child: Text(
                 e.name,
-                style: TextStyle(color: textSecondary, fontSize: fontSizeSmall),
+                style: TextStyle(color: textWhite, fontSize: fontSizeSmall),
               ),
             ),
           );

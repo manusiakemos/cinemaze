@@ -2,6 +2,7 @@ import 'package:cinemaze/models/discover_model.dart';
 import 'package:cinemaze/screens/movie_detail.dart';
 import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
+import 'package:cinemaze/widgets/movie_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shape_of_view/shape_of_view.dart';
@@ -46,15 +47,19 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
   }
 
   Future<void> fetchMovies() async {
-    setState(() {
-      loadMore = true;
-    });
+   if(mounted){
+     setState(() {
+       loadMore = true;
+     });
+   }
     List<DiscoverModel> discoverModel =
         await httpService.fetchPopularMovie(page: page.toString());
-    setState(() {
-      listMovies.addAll(discoverModel);
-      loadMore = false;
-    });
+   if(mounted){
+     setState(() {
+       listMovies.addAll(discoverModel);
+       loadMore = false;
+     });
+   }
   }
 
   @override
@@ -124,9 +129,11 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
                 SliverChildBuilderDelegate((BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ListItem(
-                  data: listMovies[index],
-                  loadMore: loadMore,
+                child: MovieList(
+                  id: listMovies[index].id,
+                  title:  listMovies[index].title,
+                  posterPath: listMovies[index].posterPath,
+                  popularity: listMovies[index].popularity.toString()
                 ),
               );
             }, childCount: listMovies.length),
@@ -138,33 +145,6 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
                     child: Center(child: CircularProgressIndicator()))),
         ],
       ),
-    );
-  }
-}
-
-class ListItem extends StatelessWidget {
-  final DiscoverModel data;
-  final bool loadMore;
-
-  ListItem({this.data, this.loadMore});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => MovieDetail(
-                      discoverModel: data,
-                    )));
-      },
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: FadeInImage.assetNetwork(
-            placeholder: "assets/loading.gif",
-            image: data.poster(),
-          )),
     );
   }
 }

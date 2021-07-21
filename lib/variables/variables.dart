@@ -7,6 +7,7 @@ Color colorPrimary = Colors.redAccent;
 Color colorSecondary = Colors.teal;
 Color textPrimary = Colors.black87;
 Color textSecondary = Colors.white70;
+Color textWhite = Colors.white;
 
 String fontDisplay = "Righteous";
 String fontPrimary = "Poppins";

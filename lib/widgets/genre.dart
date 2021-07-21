@@ -18,7 +18,7 @@ class GenreWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -37,9 +37,9 @@ class GenreWidget extends StatelessWidget {
                       snapshot.hasData) {
                     List<GenreModel> genreModel = snapshot.data;
                     return Container(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5),
                         width: MediaQuery.of(context).size.width,
-                        height: 100,
+                        height: 60,
                         child: ListView.builder(
                           itemCount: genreModel.length,
                           scrollDirection: Axis.horizontal,
@@ -66,9 +66,9 @@ class MyListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(50),
           gradient: LinearGradient(
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
