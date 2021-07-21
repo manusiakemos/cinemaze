@@ -1,6 +1,8 @@
+import 'package:cinemaze/providers/user_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemaze/variables/variables.dart';
+import 'package:provider/provider.dart';
 
 class AppBarWidget extends StatelessWidget {
   @override
@@ -9,13 +11,21 @@ class AppBarWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        IconButton(
-          onPressed: () {
-            Navigator.pushNamed(context, 'user_info');
-          },
-          icon: Icon(Icons.account_circle_outlined),
-          color: textPrimary,
-          iconSize: fontSizeExtraLarge,
+        Consumer<UserProvider>(
+            builder: (BuildContext context, UserProvider data, child){
+              return InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, "user_info");
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.network(data.userData.photoURL, height: 35,),
+                  ),
+                ),
+              );
+            }
         ),
         Text(
           appName.toLowerCase(),

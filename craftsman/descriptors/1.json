@@ -1,0 +1,40 @@
+{
+  "db": {
+    "version": 1,
+    "migrations": [
+      {
+        "create_table": {
+          "name": "FAVORITE_MOVIES",
+          "columns": [
+            {
+              "name": "id",
+              "type": "integer",
+              "index": "primary"
+            },
+            {
+              "name": "title",
+              "type": "text"
+            },
+            {
+              "name": "poster_path",
+              "type": "text"
+            },
+            {
+              "name": "popularity",
+              "type": "text"
+            },
+            "timestamps"
+          ]
+        }
+      }
+    ]
+  },
+  "orm": {
+    "create_models": [
+      {
+        "entity": "FAVORITE_MOVIE",
+        "from_migration_table": "FAVORITE_MOVIES"
+      }
+    ]
+  }
+}

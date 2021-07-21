@@ -1,10 +1,14 @@
 import 'package:cinemaze/providers/user_provider.dart';
 import 'package:cinemaze/utils/routers.dart';
 import 'package:flutter/material.dart';
+import 'package:loquacious/loquacious.dart';
 import 'package:provider/provider.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Loquacious.init('cinemaze_db', 1, useMigrations: true).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

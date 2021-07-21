@@ -10,12 +10,18 @@ import 'package:shape_of_view/shape/arc.dart';
 import 'package:shape_of_view/shape_of_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MovieDetail extends StatelessWidget {
+class MovieDetail extends StatefulWidget {
   final DiscoverModel discoverModel;
 
   MovieDetail({this.discoverModel});
 
+  @override
+  _MovieDetailState createState() => _MovieDetailState();
+}
+
+class _MovieDetailState extends State<MovieDetail> {
   final HttpService httpService = new HttpService();
+
   MovieDetailModel movieDetailModel;
 
   getImage(String imageName) {
@@ -33,7 +39,7 @@ class MovieDetail extends StatelessWidget {
       body: Container(
         child: FutureBuilder(
           future: httpService.fetchMovieDetail(
-              discoverModel.id, discoverModel.title != null),
+              widget.discoverModel.id, widget.discoverModel.title != null),
           builder: (context, AsyncSnapshot<MovieDetailModel> snapshot) {
             if (snapshot.hasData) {
               movieDetailModel = snapshot.data;
@@ -61,16 +67,16 @@ class MovieDetail extends StatelessWidget {
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                     colors: [
-                                      Colors.black54,
-                                      Colors.black.withAlpha(0)
-                                    ])),
+                                  Colors.black54,
+                                  Colors.black.withAlpha(0)
+                                ])),
                             child: SafeArea(
                               child: Container(
                                 child: Column(
                                   children: [
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         IconButton(
                                           iconSize: 24,
@@ -82,7 +88,7 @@ class MovieDetail extends StatelessWidget {
                                             Navigator.pop(context);
                                           },
                                         ),
-                                        FavoriteButton()
+                                        FavoriteButton(movieDetailModel: movieDetailModel,)
                                       ],
                                     ),
                                   ],
@@ -110,14 +116,12 @@ class MovieDetail extends StatelessWidget {
                               child: Container(
                                   padding: EdgeInsets.all(paddingMedium),
                                   child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 4),
+                                        padding: const EdgeInsets.only(left: 4),
                                         child: Text(
                                           movieDetailModel.judul(),
                                           style: headingPrimary,
@@ -228,34 +232,50 @@ class MovieDetail extends StatelessWidget {
                                         future: httpService.fetchImages(
                                             movieDetailModel.id,
                                             movieDetailModel.title != null),
-                                        builder: (BuildContext context, AsyncSnapshot<ImageModel> snapshot) {
+                                        builder: (BuildContext context,
+                                            AsyncSnapshot<ImageModel>
+                                                snapshot) {
                                           if (snapshot.hasData) {
-                                            ImageModel imageModel = snapshot.data;
-                                            List<Backdrop> backdrop = imageModel.backdrops;
-                                            debugPrint(backdrop[0].toString());
+                                            ImageModel imageModel =
+                                                snapshot.data;
+                                            List<Backdrop> backdrop =
+                                                imageModel.backdrops;
                                             return Container(
-                                              height: MediaQuery.of(context).size.height * 0.2,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.2,
                                               child: ListView(
-                                                scrollDirection: Axis.horizontal,
-                                                children:  backdrop.map((e){
-                                                  return Padding(
-                                                    padding: const EdgeInsets.only(right: 4),
-                                                    child: ClipRRect(
-                                                      borderRadius: BorderRadius.circular(10),
-                                                      child: FadeInImage.assetNetwork(
-                                                          placeholder: "assets/loading.gif",
-                                                          fit: BoxFit.cover,
-                                                          image: getImage(e.filePath)
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  children: backdrop.map((e) {
+                                                    return Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 4),
+                                                      child: ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: FadeInImage
+                                                            .assetNetwork(
+                                                                placeholder:
+                                                                    "assets/loading.gif",
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                image: getImage(
+                                                                    e.filePath)),
                                                       ),
-                                                    ),
-                                                  );
-                                                }).toList()
-                                              ),
+                                                    );
+                                                  }).toList()),
                                             );
                                           } else {
                                             return Center(
                                               child: Center(
-                                                child: CircularProgressIndicator(color: colorSecondary,),
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: colorSecondary,
+                                                ),
                                               ),
                                             );
                                           }

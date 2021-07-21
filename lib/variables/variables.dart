@@ -34,13 +34,13 @@ TextStyle headingPrimaryWhite = TextStyle(
     color: Colors.white,
     fontFamily: fontPrimary,
     fontSize: fontSizeMedium,
-    fontWeight: FontWeight.bold
+    fontWeight: FontWeight.bold/**/
 );
 
 TextStyle headingSliver = TextStyle(
     color: textSecondary,
     fontFamily: fontSecondary,
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: FontWeight.bold
 );
 
