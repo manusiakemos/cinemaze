@@ -1,5 +1,8 @@
-import 'package:cinemaze/routers.dart';
+import 'package:cinemaze/providers/user_provider.dart';
+import 'package:cinemaze/utils/authentication.dart';
+import 'package:cinemaze/utils/routers.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,14 +10,19 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-      ),
-      initialRoute: 'landing',
-      onGenerateRoute: Routers.generateRoute,
-    );
+    String initialRoute = "initial";
+    return ChangeNotifierProvider<UserProvider>(
+        create: (context) => UserProvider(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Poppins',
+          ),
+          initialRoute: initialRoute,
+          onGenerateRoute: Routers.generateRoute,
+        ));
   }
 }

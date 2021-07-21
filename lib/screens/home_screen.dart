@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               NowPlayingWidget(),
               GenreWidget(),
               PopularMovieWidget(),
-              PopularTvWidget(),
+              // PopularTvWidget(),
             ],
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:cinemaze/variables/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:cinemaze/utils/authentication.dart';
 import 'package:cinemaze/utils/custom_colors.dart';
@@ -32,22 +33,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     Flexible(
                       flex: 1,
                       child: Image.asset(
-                        'assets/images/firebase.png',
+                        'assets/images/clapperboard.png',
                         height: 160,
                       ),
                     ),
                     SizedBox(height: 20),
                     Text(
-                      'FlutterFire',
+                      'CINEMAZE',
                       style: TextStyle(
                         color: CustomColors.firebaseYellow,
-                        fontSize: 40,
-                      ),
-                    ),
-                    Text(
-                      'Authentication',
-                      style: TextStyle(
-                        color: CustomColors.firebaseOrange,
+                        fontFamily: fontDisplay,
                         fontSize: 40,
                       ),
                     ),

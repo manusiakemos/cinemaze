@@ -4,7 +4,7 @@ import 'package:cinemaze/variables/my_heading.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cinemaze/service/http_service.dart';
+import 'package:cinemaze/services/http_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/painting.dart';

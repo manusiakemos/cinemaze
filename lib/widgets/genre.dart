@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:cinemaze/models/genre_model.dart';
-import 'package:cinemaze/service/http_service.dart';
+import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/my_heading.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:flutter/cupertino.dart';

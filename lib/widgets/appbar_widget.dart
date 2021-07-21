@@ -11,7 +11,7 @@ class AppBarWidget extends StatelessWidget {
       children: [
         IconButton(
           onPressed: () {
-            // Navigator.push(context, CupertinoPageRoute(builder: (context) => SignIn()));
+            Navigator.pushNamed(context, 'user_info');
           },
           icon: Icon(Icons.account_circle_outlined),
           color: textPrimary,

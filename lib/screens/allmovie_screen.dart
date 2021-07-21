@@ -1,17 +1,9 @@
 import 'package:cinemaze/models/discover_model.dart';
 import 'package:cinemaze/screens/movie_detail.dart';
-import 'package:cinemaze/service/http_service.dart';
+import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
-import 'package:cinemaze/widgets/appbar_widget.dart';
-import 'package:cinemaze/widgets/load_more_movie.dart';
-import 'package:cinemaze/widgets/now_playing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shape_of_view/shape_of_view.dart';
-
-import 'package:cinemaze/variables/variables.dart';
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 class AllMovieScreen extends StatefulWidget {
   final bool isMovie;
@@ -66,7 +58,7 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String _imageName = "images/cinema.jpg";
+    String _imageName = "assets/images/cinema.jpg";
     String _title =
         widget.isMovie ? "Browse All Movies" : "Browse All TV Series";
     return Scaffold(
@@ -79,8 +71,8 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
             snap: true,
             elevation: 0,
             collapsedHeight: MediaQuery.of(context).size.height * 0.25,
-            backgroundColor: Colors.white.withOpacity(0),
-            expandedHeight: MediaQuery.of(context).size.height * 0.5,
+            backgroundColor: Colors.white.withOpacity(0.1),
+            expandedHeight: MediaQuery.of(context).size.height * 0.3,
             flexibleSpace: Padding(
               padding: const EdgeInsets.only(bottom: 14),
               child: Stack(children: [
@@ -89,14 +81,14 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
                     fit: BoxFit.cover,
                     width: double.infinity),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.7,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topRight,
                           end: Alignment.bottomLeft,
                           colors: [
                         Colors.black,
-                        Colors.black.withAlpha(200),
+                        Colors.black.withAlpha(30),
                       ])),
                   child: SafeArea(
                     child: Container(

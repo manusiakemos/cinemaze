@@ -1,3 +1,4 @@
+import 'package:cinemaze/providers/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -5,24 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Authentication {
-  static Future<FirebaseApp> initializeFirebase({
-     BuildContext context,
-  }) async {
+
+  static Future<FirebaseApp> initializeFirebase({ BuildContext context }) async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
-
     User user = FirebaseAuth.instance.currentUser;
-
     if (user != null) {
-      // Navigator.of(context).pushReplacement(
-      //   MaterialPageRoute(
-      //     builder: (context) => UserInfoScreen(
-      //       user: user,
-      //     ),
-      //   ),
-      // );
+      Navigator.pushNamed(context, 'home');
     }
-
     return firebaseApp;
+  }
+
+  static Future<User> getUserData({BuildContext context}) async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    User user = FirebaseAuth.instance.currentUser;
+    return user;
   }
 
 

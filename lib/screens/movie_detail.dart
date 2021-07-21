@@ -1,7 +1,7 @@
 import 'package:cinemaze/models/discover_model.dart';
 import 'package:cinemaze/models/image_model.dart';
 import 'package:cinemaze/models/movie_detail_model.dart';
-import 'package:cinemaze/service/http_service.dart';
+import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:cinemaze/widgets/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
