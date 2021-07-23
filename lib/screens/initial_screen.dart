@@ -12,30 +12,16 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  bool _done = false;
+
+  @override
+  void initState()
+  {
+    super.initState();
+    checkAuth();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 1), () async {
-      User user = await Authentication.getUserData(context: context);
-      if(user != null){
-        if(!_done){
-          Provider.of<UserProvider>(context, listen: false).userData = user;
-          setState(() {
-            _done = true;
-          });
-          Navigator.pushNamed(context, "home");
-        }
-      }else{
-        if(!_done){
-          setState(() {
-            _done = true;
-          });
-          Navigator.pushNamed(context, "sign_in");
-        }
-      }
-    });
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -43,6 +29,28 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> checkAuth() async {
+    debugPrint("checkAuth");
+    bool _done = false;
+    User user = await Authentication.getUserData(context: context);
+    if(user != null){
+      if(!_done){
+        Provider.of<UserProvider>(context, listen: false).userData = user;
+        setState(() {
+          _done = true;
+        });
+        Navigator.pushNamed(context, "home");
+      }
+    }else{
+      if(!_done){
+        setState(() {
+          _done = true;
+        });
+        Navigator.pushNamed(context, "sign_in");
+      }
+    }
   }
 }
 

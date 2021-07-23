@@ -1,8 +1,7 @@
-import 'dart:convert';
-
 import 'package:cinemaze/models/favoritemovie.dart';
 import 'package:cinemaze/providers/refresh_provider.dart';
 import 'package:cinemaze/providers/user_provider.dart';
+import 'package:cinemaze/utils/authentication.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:cinemaze/widgets/movie_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -37,7 +36,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   Future<void> fetchMovies() async {
     final fM = await FavoriteMovie.all();
-    if(mounted){
+    if (mounted) {
       setState(() {
         listMovies = [];
         listMovies.addAll(fM);
@@ -62,9 +61,21 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             controller: _scrollController,
             slivers: [
               SliverAppBar(
+                actions: [
+                  Container(
+                    margin: EdgeInsets.only(top:8, right: 4),
+                    child: IconButton(
+                        icon:Icon(Icons.logout_outlined, color: Colors.white),
+                        onPressed: () async {
+                            await Authentication.signOut();
+                            Navigator.pushNamedAndRemoveUntil(context, 'sign_in', (_) => false);
+                        },
+                      ),
+                  )
+                ],
                 floating: true,
-                pinned: false,
-                snap: true,
+                pinned: true,
+                snap: false,
                 elevation: 0,
                 collapsedHeight: MediaQuery.of(context).size.height * 0.25,
                 backgroundColor: Colors.white.withAlpha(0).withOpacity(0),
@@ -73,7 +84,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   padding: const EdgeInsets.only(bottom: 14),
                   child: Stack(children: [
                     ShapeOfView(
-                        elevation: 0,
+                        elevation: 8,
                         shape: ArcShape(
                             direction: ArcDirection.Outside,
                             height: 30,
@@ -132,7 +143,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                       id: listMovies[index].id,
                       title: listMovies[index].title,
                       posterPath: listMovies[index].posterPath,
-                      popularity: listMovies[index].popularity,
+                      popularity: double.parse(listMovies[index].popularity),
                     ),
                   );
                 }, childCount: listMovies.length),

@@ -3,6 +3,7 @@ import 'package:cinemaze/models/image_model.dart';
 import 'package:cinemaze/models/movie_detail_model.dart';
 import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
+import 'package:cinemaze/widgets/Rating.dart';
 import 'package:cinemaze/widgets/favorite_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -138,22 +139,9 @@ class _MovieDetailState extends State<MovieDetail> {
                                           Container(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 4),
-                                            child: Row(
-                                              children: [
-                                                Icon(Icons.star,
-                                                    color: Colors.amber),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: paddingSmall,
-                                                      right: paddingLarge),
-                                                  child: Text(
-                                                      movieDetailModel
-                                                          .voteAverage
-                                                          .toString(),
-                                                      style: textMuted),
-                                                ),
-                                              ],
-                                            ),
+                                            child: Rating(rating: movieDetailModel
+                                                .voteAverage
+                                                .toString(),),
                                           ),
                                           showRunTime(movieDetailModel)
                                         ],

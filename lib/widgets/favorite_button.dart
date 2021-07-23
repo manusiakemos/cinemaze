@@ -28,6 +28,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
   @override
   Widget build(BuildContext context) {
 
+
     MovieDetailModel _movieDetailModel = widget.movieDetailModel;
     setIsFav(_movieDetailModel);
 
@@ -65,13 +66,17 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       "id": movieDetailModel.id,
       "title" : movieDetailModel.title,
       "poster_path" : movieDetailModel.posterPath,
-      "popularity" : movieDetailModel.popularity,
+      "popularity" : movieDetailModel.voteAverage.toString(),
       "created_at" : "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}",
       "updated_at" : "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}"
     };
     await LQB.table("FAVORITE_MOVIES").insert(_data);
 
     getMovies();
+
+    final snackBar = SnackBar(content: Text('${movieDetailModel.title} Added to favorite list'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
   }
 
   void getMovies() async {
@@ -81,6 +86,8 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   Future<void> removeFav(MovieDetailModel movieDetailModel) async {
     LQB.table("FAVORITE_MOVIES").where("id", movieDetailModel.id).delete();
+    final snackBar = SnackBar(content: Text('${movieDetailModel.title} have been removed from list'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Future<void> setIsFav(MovieDetailModel movieDetailModel) async {

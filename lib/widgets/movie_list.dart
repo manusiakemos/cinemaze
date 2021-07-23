@@ -2,7 +2,9 @@ import 'package:cinemaze/models/discover_model.dart';
 import 'package:cinemaze/models/favoritemovie.dart';
 import 'package:cinemaze/models/movie_detail_model.dart';
 import 'package:cinemaze/screens/movie_detail.dart';
+import 'package:cinemaze/widgets/Rating.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'favorite_button.dart';
 
@@ -10,7 +12,7 @@ class MovieList extends StatelessWidget {
   final int id;
   final String title;
   final String posterPath;
-  final String popularity;
+  final double popularity;
 
   MovieList({this.id, this.title, this.posterPath, this.popularity});
 
@@ -23,7 +25,9 @@ class MovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, dynamic> jS = {
       "id" : id,
-      "title" : title
+      "title" : title,
+      "poster_path" : posterPath,
+      "popularity" : popularity
     };
     MovieDetailModel mDM = MovieDetailModel.fromJson(jS);
     DiscoverModel dM = DiscoverModel.fromJson(jS);
@@ -31,19 +35,43 @@ class MovieList extends StatelessWidget {
         onTap: (){
           Navigator.push(context, CupertinoPageRoute(builder: (context)=> MovieDetail(discoverModel: dM)));
         },
-        child: Stack(
-            children:[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: FadeInImage.assetNetwork(
-                  placeholder: "assets/loading.gif",
-                  image: getImage(posterPath),
+        child: Container(
+          child: Stack(
+              children:[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: FadeInImage.assetNetwork(
+                    placeholder: "assets/loading.gif",
+                    image: getImage(posterPath),
+                  ),
                 ),
-              ),
-              Positioned(
-                child: FavoriteButton(movieDetailModel: mDM),
-              )
-            ]
+                Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black54,
+                            Colors.black.withAlpha(0)
+                          ]
+                      )
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  child: FavoriteButton(movieDetailModel: mDM),
+                ),
+                Positioned(
+                  right: 0,
+                  child:Container(
+                    margin: EdgeInsets.only(top: 8),
+                    child: Rating(rating: mDM.popularity.toString(), isBold: true,),
+                  )
+                ),
+
+              ]
+          ),
         )
     );
   }

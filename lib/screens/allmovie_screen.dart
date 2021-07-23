@@ -1,5 +1,4 @@
 import 'package:cinemaze/models/discover_model.dart';
-import 'package:cinemaze/screens/movie_detail.dart';
 import 'package:cinemaze/services/http_service.dart';
 import 'package:cinemaze/variables/variables.dart';
 import 'package:cinemaze/widgets/movie_list.dart';
@@ -9,8 +8,9 @@ import 'package:shape_of_view/shape_of_view.dart';
 
 class AllMovieScreen extends StatefulWidget {
   final bool isMovie;
+  final int genreId;
 
-  const AllMovieScreen({Key key, this.isMovie}) : super(key: key);
+  const AllMovieScreen({Key key, this.isMovie, this.genreId}) : super(key: key);
 
   @override
   _AllMovieScreenState createState() => _AllMovieScreenState();
@@ -73,8 +73,8 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
         slivers: [
           SliverAppBar(
             floating: true,
-            pinned: false,
-            snap: true,
+            pinned: true,
+            snap: false,
             elevation: 0,
             collapsedHeight: MediaQuery.of(context).size.height * 0.25,
             backgroundColor: Colors.white.withOpacity(0),
@@ -83,7 +83,7 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
               padding: const EdgeInsets.only(bottom: 14),
               child: Stack(children: [
                 ShapeOfView(
-                    elevation: 0,
+                    elevation: 8,
                     shape: ArcShape(
                         direction: ArcDirection.Outside,
                         height: 30,
@@ -133,7 +133,7 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
                   id: listMovies[index].id,
                   title:  listMovies[index].title,
                   posterPath: listMovies[index].posterPath,
-                  popularity: listMovies[index].popularity.toString()
+                  popularity: listMovies[index].voteAverage
                 ),
               );
             }, childCount: listMovies.length),
