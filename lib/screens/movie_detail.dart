@@ -139,9 +139,7 @@ class _MovieDetailState extends State<MovieDetail> {
                                           Container(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 4),
-                                            child: Rating(rating: movieDetailModel
-                                                .voteAverage
-                                                .toString(),),
+                                            child: Rating(rating: movieDetailModel.voteAverage,),
                                           ),
                                           showRunTime(movieDetailModel)
                                         ],

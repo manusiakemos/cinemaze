@@ -24,7 +24,9 @@ class FavoriteMovie {
   // arguments of the model representing the table columns
   Map<String, dynamic> arguments = {
     'id': null,
-    'title': null, 'poster_path': null, 'popularity': null,
+    'title': null,
+    'poster_path': null,
+    'popularity': null,
     'created_at': null,
     'updated_at': null,
   };

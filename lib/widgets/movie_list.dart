@@ -39,37 +39,34 @@ class MovieList extends StatelessWidget {
           child: Stack(
               children:[
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
                   child: FadeInImage.assetNetwork(
                     placeholder: "assets/loading.gif",
                     image: getImage(posterPath),
                   ),
                 ),
-                Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.black54,
-                            Colors.black.withAlpha(0)
-                          ]
-                      )
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black26,
+                              Colors.black.withAlpha(0)
+                            ]
+                        )
+                    ),
                   ),
                 ),
                 Positioned(
-                  left: 0,
-                  child: FavoriteButton(movieDetailModel: mDM),
+                    right: 0,
+                    child:Container(
+                      margin: EdgeInsets.only(top: 8),
+                      child: Rating(rating: mDM.popularity, isBold: true,),
+                    )
                 ),
-                Positioned(
-                  right: 0,
-                  child:Container(
-                    margin: EdgeInsets.only(top: 8),
-                    child: Rating(rating: mDM.popularity.toString(), isBold: true,),
-                  )
-                ),
-
               ]
           ),
         )

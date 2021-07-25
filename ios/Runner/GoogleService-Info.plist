@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>752952554318-e61r2q4s0g0nfvmvfahsahogclfenn51.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.752952554318-e61r2q4s0g0nfvmvfahsahogclfenn51</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>752952554318-2dbm06rg2qs5smdvdau13tq35vbrqv3r.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDzBajQG3L7vdcNj_pc6pNfg1P5YiGFVxA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>752952554318</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.cinemaze</string>
+	<key>PROJECT_ID</key>
+	<string>cinemaze-35eec</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cinemaze-35eec.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:752952554318:ios:bfe554e0eddd9bc7d0a41f</string>
+</dict>
+</plist>

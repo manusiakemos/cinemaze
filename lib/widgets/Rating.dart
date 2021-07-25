@@ -2,7 +2,7 @@ import 'package:cinemaze/variables/variables.dart';
 import 'package:flutter/material.dart';
 
 class Rating extends StatelessWidget {
-  final String rating;
+  final double rating;
   final bool isBold;
 
   const Rating({this.rating, this.isBold = false});
@@ -17,7 +17,7 @@ class Rating extends StatelessWidget {
           padding: EdgeInsets.only(
               left: paddingSmall,
               right: paddingLarge),
-          child: BoldTextOrNot(rating: rating, isBold: isBold,)
+          child: BoldTextOrNot(rating: rating.toString(), isBold: isBold,)
         ),
       ],
     );

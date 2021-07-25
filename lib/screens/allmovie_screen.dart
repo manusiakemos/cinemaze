@@ -133,7 +133,7 @@ class _AllMovieScreenState extends State<AllMovieScreen> {
                   id: listMovies[index].id,
                   title:  listMovies[index].title,
                   posterPath: listMovies[index].posterPath,
-                  popularity: listMovies[index].voteAverage
+                  popularity: listMovies[index].voteAverage,
                 ),
               );
             }, childCount: listMovies.length),

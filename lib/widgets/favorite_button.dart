@@ -32,31 +32,35 @@ class _FavoriteButtonState extends State<FavoriteButton> {
     MovieDetailModel _movieDetailModel = widget.movieDetailModel;
     setIsFav(_movieDetailModel);
 
-    return IconButton(
-      icon: Icon(
-        isFav ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
-      ),
-      onPressed: () async {
-        //jika sdh difavoritkan maka hapus
-        if(isFav){
-          await removeFav(_movieDetailModel);
-        }else{
-          //jika belum, tambahkan ke favorit
-          await addToFav(_movieDetailModel);
-        }
+    return Row(
+      children: [
+        IconButton(
+          icon: Icon(
+            isFav ? Icons.favorite : Icons.favorite_border,
+            color: Colors.red,
+          ),
+          onPressed: () async {
+            //jika sdh difavoritkan maka hapus
+            if(isFav){
+              await removeFav(_movieDetailModel);
+            }else{
+              //jika belum, tambahkan ke favorit
+              await addToFav(_movieDetailModel);
+            }
 
-        if (!mounted) return;
+            if (!mounted) return;
 
-        if (mounted) {
-          setState(() {
-            isFav = !isFav;
-          });
-        }
+            if (mounted) {
+              setState(() {
+                isFav = !isFav;
+              });
+            }
 
-        Provider.of<RefreshProvider>(context,listen: false).refreshPage();
+            Provider.of<RefreshProvider>(context,listen: false).refreshPage();
 
-      },
+          },
+        ),
+      ],
     );
   }
 
@@ -66,7 +70,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
       "id": movieDetailModel.id,
       "title" : movieDetailModel.title,
       "poster_path" : movieDetailModel.posterPath,
-      "popularity" : movieDetailModel.voteAverage.toString(),
+      "popularity" : movieDetailModel.voteAverage != null ? movieDetailModel.voteAverage.toString() : "0",
       "created_at" : "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}",
       "updated_at" : "${now.year}-${now.month}-${now.day} ${now.hour}:${now.minute}:${now.second}"
     };
